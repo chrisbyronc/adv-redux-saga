@@ -8,7 +8,7 @@ marp: true
 
 # Iterable
 
-An `Iterabl`e is an object which defines its iteration behavior, such as what values are looped over in a `for...of` construct. 
+An `Iterable` is an object which defines its iteration behavior, such as what values are looped over in a `for...of` construct. 
 
 <br>
 

@@ -21,6 +21,7 @@ Create a generator function `numberDoubler` that takes a generator and yields th
 ## Practice project
 
 Create a generator function `fibonacciGenerator` that yields the Fibonacci sequence. Then create another generator function take that accepts a generator and a number n, and yields the first n values from the input generator
+
 Finally, create a generator function filter that accepts a generator and a predicate function, and yields only the values from the input generator that satisfy the predicate
 
 ---
