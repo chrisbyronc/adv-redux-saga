@@ -51,4 +51,25 @@ function fetchData(url) {
             })
 }
 
-fetchData('http://jsonplaceholder.typicode.com/posts/1').then(data => console.log(data))
+// fetchData('http://jsonplaceholder.typicode.com/posts/1').then(data => console.log(data))
+
+
+//Mini Project - Task 1
+
+//You are to write a function getWeather(city) that makes a fetch request to the Open-Meteo API to get the weather data for a specific city.
+
+async function getWeather(city) {
+  const response = await fetch(`http://api.open-meteo.com/v1/forecast?city=${city}`);
+  const weatherData = await response.json();
+
+  if (response.ok) {
+      return weatherData;
+  } else {
+      throw new Error(weatherData.message);
+  }
+}
+
+// usage:
+getWeather('New York')
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
