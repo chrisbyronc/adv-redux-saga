@@ -1,17 +1,27 @@
-import { createStore, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import weatherSaga from './sagas';
 
-// Initial state
 const initialState = {
-  weather: {},
-  loading: false,
-  error: null,
+  weather: null,
+  error: null
 };
 
-// Reducer
+// Reducer function
 function reducer(state = initialState, action) {
   switch (action.type) {
-    // Handle actions here
+    case 'FETCH_WEATHER_SUCCESS':
+      return {
+        ...state,
+        weather: action.payload,
+        error: null
+      };
+    case 'FETCH_WEATHER_FAILURE':
+      return {
+        ...state,
+        weather: null,
+        error: action.error
+      };
     default:
       return state;
   }
@@ -19,11 +29,12 @@ function reducer(state = initialState, action) {
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
+// Create store
+const store = configureStore({
   reducer,
-  applyMiddleware(sagaMiddleware)
-);
+  middleware: [sagaMiddleware]
+});
 
-// Run the saga
+sagaMiddleware.run(weatherSaga);
 
 export default store;
