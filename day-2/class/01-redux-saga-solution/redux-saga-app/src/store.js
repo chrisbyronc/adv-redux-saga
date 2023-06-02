@@ -14,17 +14,27 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     // Handle actions here
     case 'FETCH_WEATHER_SUCCESS':
-      console.log(action.payload)
       return {
         ...state,
+        error: '',
         weather: action.payload
+      }
+    case 'FETCH_WEATHER_FAILURE':
+      return {
+        ...state,
+        error: action.error
       }
     default:
       return state;
   }
 }
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+    onError: (error, { sagaStack }) => {
+      console.log('Uncaught error in saga:', error, sagaStack);
+    },
+  }
+);
 
 // Create store
 const store = configureStore({
