@@ -48,3 +48,23 @@ Today's Agenda
 5. Error handling
 6. Aspects of saga* (some stretch goal)
 7. Q&A
+
+
+What did we learn today?
+
+1. reducers
+   1. can sanitizes data
+   2. sets store data
+2. sagas
+   1. handle side effects in a redux app
+   2. generator
+   3. middleware
+   4. put() - sends action to the reducer
+   5. take() or takeEvery() - takes in a dispatched action
+   6. all() - concurrent running sagas
+   7. can help aid in REST API calls
+   8. compose sagas
+   9. cancelled sagas
+3. error handling in redux-saga
+   1. onError hook to handle middleware propagated errors
+   2. try {} catch to handle errors within a saga

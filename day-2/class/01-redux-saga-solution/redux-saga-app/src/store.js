@@ -5,6 +5,7 @@ import weatherSaga from './sagas';
 // Initial state
 const initialState = {
   weather: {},
+  forecastWeather: {},
   loading: false,
   error: null,
 };
@@ -13,11 +14,17 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     // Handle actions here
-    case 'FETCH_WEATHER_SUCCESS':
+    case 'FETCH_CURRENT_WEATHER_SUCCESS':
       return {
         ...state,
         error: '',
         weather: action.payload
+      }
+    case 'FETCH_FORECAST_WEATHER_SUCCESS':
+      return {
+        ...state,
+        error: '',
+        forecastWeather: action.payload
       }
     case 'FETCH_WEATHER_FAILURE':
       return {

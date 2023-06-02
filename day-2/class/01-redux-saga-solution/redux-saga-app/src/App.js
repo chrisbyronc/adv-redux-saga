@@ -26,6 +26,12 @@ function App() {
     });
   }
 
+  const stopFetching = () => {
+    dispatch({
+      type: 'STOP_FETCHING'
+    });
+  }
+
   return (
     <div className="App">
       <h1>Weather App</h1>
@@ -38,6 +44,7 @@ function App() {
         <input type="text" value={longitude} onChange={handleLongitudeChange}></input>
       </label>
       <button onClick={handleFetch}>Fetch Weather</button>
+      <button onClick={stopFetching}>Stop the Fetch!</button>
       {weatherData && <div>{JSON.stringify(weatherData)}</div>}
       {errorMessage && <div>Error: {JSON.stringify(errorMessage)}</div>}
     </div>

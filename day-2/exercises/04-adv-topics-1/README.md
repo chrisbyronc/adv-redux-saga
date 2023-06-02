@@ -1,5 +1,3 @@
-
-
 ### Sequential Sagas
 
 **Exercise 1:** Modify your `weatherSaga` to fetch current weather data and then fetch the forecast for the next 7 days, in that order. Make sure the second API call waits until the first one is completed before it starts. 
