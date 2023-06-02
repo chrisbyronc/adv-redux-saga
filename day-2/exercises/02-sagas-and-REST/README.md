@@ -4,41 +4,28 @@ In this project, you will be building a weather forecast application using Redux
 
 StarterCode
 
+```npm i node-fetch```
+
 ```javascript
 import { call, put, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
 
-function* fetchWeather(action) {
-  try {
-    const response = yield call(axios.get, `https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}`);
-    yield put({ type: 'FETCH_WEATHER_SUCCESS', payload: response.data });
-  } catch (e) {
-    yield put({ type: 'FETCH_WEATHER_FAILURE', message: e.message });
-  }
-}
-
-export function* weatherSaga() {
-  yield takeEvery('FETCH_WEATHER', fetchWeather);
-}
-```
-
-StarterActions
-
-```javascript
-export const fetchWeather = (location) => ({
-  type: 'FETCH_WEATHER',
-  payload: location
-});
-
-export const fetchWeatherSuccess = (weatherData) => ({
-  type: 'FETCH_WEATHER_SUCCESS',
-  payload: weatherData
-});
-
-export const fetchWeatherFailure = (error) => ({
-  type: 'FETCH_WEATHER_FAILURE',
-  payload: error
-});
+// Fetch data from the weather API
+const fetchApi = () => {
+  return fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong on api server!');
+      }
+    })
+    .then(response => {
+      return response;
+    })
+    .catch(error => {
+      throw error;
+    });
+};
 ```
 
 ## Task 1: Set up your Redux and Saga middleware

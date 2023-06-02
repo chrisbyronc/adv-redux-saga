@@ -36,16 +36,15 @@ sagaMiddleware.run(mySaga)
 
 ```javascript
 import { call, put } from 'redux-saga/effects'
-import Api from '...' // import your API here
 
 // Worker saga
-function* fetchUser(action) {
-   try {
-      const user = yield call(Api.fetchUser, action.payload.userId);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-   } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
-   }
+function* fetchWeather(action) {
+  try {
+    const weatherData = yield call(fetchApi);
+    yield put({ type: 'FETCH_WEATHER_SUCCESS', payload: weatherData });
+  } catch (error) {
+    yield put({ type: 'FETCH_WEATHER_FAILURE', error });
+  }
 }
 ```
 
